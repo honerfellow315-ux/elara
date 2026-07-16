@@ -4821,6 +4821,7 @@ section, .branding, .stats, .why-section, .process-map {
     .hero-inner {
         grid-template-columns: 1fr;
         text-align: center;
+        padding-top: 130px;
     }
     .hero-copy {
         order: 1;
