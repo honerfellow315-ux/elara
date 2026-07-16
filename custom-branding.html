@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom Bottle Branding | Elara Wave</title>
+<meta name="description" content="Design your own branded Elara Wave water bottle - pick a size, choose a color, upload your logo and preview it instantly.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+/* ===== Live Customizer — Procedural 3D Canvas Bottle ===== */
+.bt-canvas-frame{
+  position:relative;
+  width:100%;
+  max-width:340px;
+  margin:0 auto;
+  perspective:1000px;
+}
+#btCanvas{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:16px;
+  filter:drop-shadow(0 24px 34px rgba(18,58,94,0.20));
+  transform-style:preserve-3d;
+  transform-origin:center bottom;
+  animation:btFloat3D 6s ease-in-out infinite;
+}
+.bt-shine{
+  position:absolute;
+  top:6%;
+  left:-45%;
+  width:35%;
+  height:88%;
+  background:linear-gradient(100deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.55) 48%, rgba(255,255,255,0) 100%);
+  mix-blend-mode:overlay;
+  pointer-events:none;
+  border-radius:16px;
+  animation:btShine 3.8s ease-in-out infinite;
+}
+@keyframes btFloat3D{
+  0%,100%{ transform:translateY(0) rotateY(-7deg); }
+  50%{ transform:translateY(-9px) rotateY(7deg); }
+}
+@keyframes btShine{
+  0%{ left:-45%; }
+  55%,100%{ left:130%; }
+}
+@media (prefers-reduced-motion: reduce){
+  #btCanvas, .bt-shine{ animation:none; }
+}
+
+/* Realistic, colorful swatch grid */
+.bt-color-grid-real{
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  gap:9px;
+  margin-top:12px;
+}
+.bt-color-swatch-real{
+  position:relative;
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:50%;
+  cursor:pointer;
+  border:2px solid #fff;
+  box-shadow:0 0 0 1.5px #dde7ee, inset 0 -3px 5px rgba(0,0,0,0.15), inset 0 2px 3px rgba(255,255,255,0.45);
+  transition:transform .15s ease;
+}
+.bt-color-swatch-real:hover{
+  transform:scale(1.14);
+}
+.bt-color-swatch-real.selected{
+  box-shadow:0 0 0 2.5px #3E9AD6, inset 0 -3px 5px rgba(0,0,0,0.15), inset 0 2px 3px rgba(255,255,255,0.45);
+}
+.bt-color-swatch-real.selected::after{
+  content:"✓";
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:12px;
+  text-shadow:0 1px 2px rgba(0,0,0,0.5);
+}
+.bt-color-custom{
+  position:relative;
+  width:100%;
+  aspect-ratio:1/1;
+  border-radius:50%;
+  cursor:pointer;
+  border:2px solid #fff;
+  box-shadow:0 0 0 1.5px #dde7ee;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:conic-gradient(from 0deg,#ff0000,#ffff00,#00ff00,#00ffff,#0000ff,#ff00ff,#ff0000);
+  overflow:hidden;
+}
+.bt-color-custom input[type="color"]{
+  position:absolute;
+  inset:-4px;
+  opacity:0;
+  cursor:pointer;
+  width:calc(100% + 8px);
+  height:calc(100% + 8px);
+}
+.bt-block.disabled{
+  opacity:0.42;
+  pointer-events:none;
+  filter:grayscale(0.5);
+}
+.bt-logo-only-note{
+  font-size:11.5px;
+  color:#E0663E;
+  font-weight:600;
+  margin-top:9px;
+  display:none;
+}
+.bt-logo-only-note.show{
+  display:block;
+}
+@media (max-width:600px){
+  .bt-color-grid-real{ grid-template-columns:repeat(6,1fr); }
+  .bt-canvas-frame{ max-width:260px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <img src="images/elara-logo.webp" alt="Elara Wave Logo" style="height:45px;width:auto;">
+      <span class="logo-text">
+        <span class="logo-title">ELARA WAVE</span>
+        <span class="logo-sub">FLOW WITH FRESHNESS</span>
+      </span>
+    </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="has-dropdown">
+          <a href="products.html">Products <svg class="caret" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+          <ul class="dropdown">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="alkaline-water.html">Alkaline Water</a></li>
+            <li><a href="premium-water.html">Premium Water</a></li>
+          </ul>
+        </li>
+        <li class="active"><a href="custom-branding.html">Custom Branding</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li class="has-dropdown">
+          <a href="#">Others <svg class="caret" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+          <ul class="dropdown">
+            <li><a href="offers.html">Offers</a></li>
+            <li><a href="coverage-areas.html">Coverage Areas</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="faqs.html">FAQs</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html">Register</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="tel:03096419731" class="phone-pill">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.9 21 3 13.1 3 3c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.3 1.1L6.6 10.8z" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span>0309 6419731</span>
+      </a>
+      <a href="contact.html" class="btn btn-gradient">Order Now</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ========== MOBILE NAV DRAWER ========== -->
+<div class="mobile-nav-overlay" id="mobileNavOverlay"></div>
+<nav class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-top">
+    <span class="logo-title" style="font-size:17px;">ELARA WAVE</span>
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close Menu">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li class="has-dropdown">
+      <a href="products.html">Products <svg class="caret" width="10" height="6" viewBox="0 0 10 6"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+      <div class="mobile-dropdown">
+        <a href="products.html">All Products</a>
+        <a href="alkaline-water.html">Alkaline Water</a>
+        <a href="premium-water.html">Premium Water</a>
+      </div>
+    </li>
+    <li class="active"><a href="custom-branding.html">Custom Branding</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="offers.html">Offers</a></li>
+    <li><a href="coverage-areas.html">Coverage Areas</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="login.html">Login</a></li>
+    <li><a href="register.html">Register</a></li>
+  </ul>
+  <div class="mobile-nav-actions">
+    <a href="tel:03096419731" class="btn btn-outline">0309 6419731</a>
+    <a href="contact.html" class="btn btn-gradient">Order Now</a>
+  </div>
+</nav>
+
+<!-- ========== PAGE BANNER ========== -->
+<section class="page-banner">
+  <div class="container page-banner-inner">
+    <span class="section-tag" style="color:#EAF6FC;">CUSTOM BRANDING</span>
+    <h1>Your Brand On Every Drop</h1>
+    <p>Premium custom-labeled water bottles for hotels, restaurants, events and corporate gifting. Minimum 100 bottles with free design mockup.</p>
+    <div class="breadcrumb"><a href="index.html">Home</a><span>/</span><span>Custom Branding</span></div>
+  </div>
+</section>
+
+<!-- VIP INFO STRIP -->
+<div class="branding-strip" style="background:linear-gradient(90deg,#123A5E,#3E9AD6);padding:18px 0;overflow:hidden;">
+  <div style="display:flex;gap:30px;align-items:center;justify-content:center;flex-wrap:wrap;padding:0 24px;">
+    <span style="color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;gap:8px;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.2L12 16.4 5.8 20.9l2.4-7.2L2 9.2h7.6L12 2Z" fill="rgba(255,255,255,0.2)" stroke="#fff" stroke-width="1.6"/></svg>
+      VIP Corporate Branding
+    </span>
+    <span style="color:rgba(255,255,255,0.5);">•</span>
+    <span style="color:#fff;font-size:13px;font-weight:600;">Minimum 100 Bottles</span>
+    <span style="color:rgba(255,255,255,0.5);">•</span>
+    <span style="color:#fff;font-size:13px;font-weight:600;">Free Design Mockup</span>
+    <span style="color:rgba(255,255,255,0.5);">•</span>
+    <span style="color:#fff;font-size:13px;font-weight:600;">3–5 Day Turnaround</span>
+    <span style="color:rgba(255,255,255,0.5);">•</span>
+    <span style="color:#fff;font-size:13px;font-weight:600;">Delivered Across Lahore</span>
+  </div>
+</div>
+
+<!-- ========== REAL BOTTLE GALLERY ========== -->
+<section class="branding-real-gallery">
+  <div class="container">
+    <div class="section-heading center">
+      <span class="section-tag">OUR REAL BOTTLES</span>
+      <h2>Premium Quality You Can See &amp; Feel</h2>
+      <p>Every custom-branded bottle is produced at our state-of-the-art facility using premium materials and high-quality printing that makes your brand stand out.</p>
+    </div>
+    <div class="branding-gallery-grid">
+      <div class="branding-gallery-item wide">
+        <img src="images/bottle-real-2.jpeg" alt="Elara Wave Real Bottles">
+      </div>
+      <div class="branding-gallery-item tall">
+        <img src="images/bottle-real-1.jpeg" alt="Custom Branded Water Bottle">
+      </div>
+      <div class="branding-gallery-item">
+        <img src="images/bottle-real-3.jpeg" alt="Premium Water Bottles">
+      </div>
+      <div class="branding-gallery-item">
+        <img src="images/bottle-real-4.jpeg" alt="Elara Wave Custom Bottles">
+      </div>
+      <div class="branding-gallery-item">
+        <img src="images/bottle-real-5.jpeg" alt="Elara Wave Bottle Close-up">
+      </div>
+      <div class="branding-gallery-item">
+        <img src="images/bottle-real-6.jpeg" alt="Branded Water Bottles Lahore">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== VIP BENEFITS STRIP ========== -->
+<div class="branding-benefits-strip">
+  <div class="container">
+    <div class="branding-benefits-grid">
+      <div class="branding-benefit-item">
+        <div class="branding-benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.2L12 16.4 5.8 20.9l2.4-7.2L2 9.2h7.6L12 2Z" stroke="currentColor" stroke-width="1.8"/></svg>
+        </div>
+        <h4>Premium Print Quality</h4>
+        <p>High-resolution printing on premium shrink-sleeve labels.</p>
+      </div>
+      <div class="branding-benefit-item">
+        <div class="branding-benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <h4>Fast Turnaround</h4>
+        <p>3–5 business days production and delivery across Lahore.</p>
+      </div>
+      <div class="branding-benefit-item">
+        <div class="branding-benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M9 12l3 3 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/></svg>
+        </div>
+        <h4>Free Design Mockup</h4>
+        <p>We create a free preview before you confirm the order.</p>
+      </div>
+      <div class="branding-benefit-item">
+        <div class="branding-benefit-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 16V7h11v9" stroke="currentColor" stroke-width="1.8"/><path d="M14 10h4l3 3v3h-7" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.6" stroke="currentColor" stroke-width="1.4"/><circle cx="17" cy="18" r="1.6" stroke="currentColor" stroke-width="1.4"/></svg>
+        </div>
+        <h4>Bulk Delivery</h4>
+        <p>Reliable delivery for 100 to 10,000+ bottles anywhere in Lahore.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== LIVE CUSTOMIZATION TOOL ========== -->
+<section class="branding-tool-section" id="customize">
+  <div class="container">
+    <div class="section-heading center" style="margin-bottom:40px;">
+      <span class="section-tag">LIVE CUSTOMIZER</span>
+      <h2>Design Your Bottle Live</h2>
+      <p>Pick a size, choose your label color, upload your logo and see a real-time preview.</p>
+    </div>
+    <div class="branding-tool">
+
+      <!-- LIVE PREVIEW -->
+      <div class="bt-preview">
+        <div class="bt-canvas-frame">
+          <canvas id="btCanvas" width="420" height="640"></canvas>
+          <div class="bt-shine" aria-hidden="true"></div>
+        </div>
+        <div class="bt-size-tag" id="btSizeTag">500 ml Bottle</div>
+        <a href="#" id="btDownloadBtn" class="btn btn-outline bt-download-btn">⬇ Download Preview (PNG)</a>
+      </div>
+
+      <!-- CONTROLS -->
+      <div class="bt-controls">
+        <span class="section-tag">LIVE PREVIEW</span>
+        <h3>Customize Your Bottle</h3>
+        <p>Every change updates the 3D preview instantly. Your bottle, your brand, your logo — download it, or request a quote below.</p>
+
+        <div class="bt-block">
+          <label class="bt-label-title">1. Select Bottle Size</label>
+          <div class="bt-bottle-options" id="btBottleOptions">
+            <div class="bt-bottle-opt" data-size="250">250ml</div>
+            <div class="bt-bottle-opt selected" data-size="500" data-default="1">500ml</div>
+            <div class="bt-bottle-opt" data-size="1000">1L</div>
+            <div class="bt-bottle-opt" data-size="1500">1.5L</div>
+            <div class="bt-bottle-opt" data-size="premium">Premium</div>
+          </div>
+          <p style="font-size:11.5px;color:var(--text-muted);margin-top:8px;">Note: 5L &amp; 19L bottles are not available for custom branding. The Premium bottle features a sleek full-diameter black cap and does not carry a color label.</p>
+        </div>
+
+        <div class="bt-block" id="btColorBlock">
+          <label class="bt-label-title">2. Choose Label Color</label>
+          <div class="bt-color-grid-real" id="btColorOptions">
+            <div class="bt-color-swatch-real selected" style="background:#3E9AD6;" data-color="#3E9AD6" title="Ocean Blue"></div>
+            <div class="bt-color-swatch-real" style="background:#123A5E;" data-color="#123A5E" title="Navy"></div>
+            <div class="bt-color-swatch-real" style="background:#0C2C48;" data-color="#0C2C48" title="Deep Navy"></div>
+            <div class="bt-color-swatch-real" style="background:#2980B9;" data-color="#2980B9" title="Sky Blue"></div>
+            <div class="bt-color-swatch-real" style="background:#1FB6B0;" data-color="#1FB6B0" title="Teal"></div>
+            <div class="bt-color-swatch-real" style="background:#16A085;" data-color="#16A085" title="Emerald"></div>
+            <div class="bt-color-swatch-real" style="background:#6FB92C;" data-color="#6FB92C" title="Leaf Green"></div>
+            <div class="bt-color-swatch-real" style="background:#2E7D32;" data-color="#2E7D32" title="Forest Green"></div>
+            <div class="bt-color-swatch-real" style="background:#27AE60;" data-color="#27AE60" title="Mint Green"></div>
+            <div class="bt-color-swatch-real" style="background:#F1C40F;" data-color="#F1C40F" title="Golden Yellow"></div>
+            <div class="bt-color-swatch-real" style="background:#F5A623;" data-color="#F5A623" title="Amber"></div>
+            <div class="bt-color-swatch-real" style="background:#E67E22;" data-color="#E67E22" title="Tangerine"></div>
+            <div class="bt-color-swatch-real" style="background:#E0663E;" data-color="#E0663E" title="Sunset Orange"></div>
+            <div class="bt-color-swatch-real" style="background:#D35400;" data-color="#D35400" title="Burnt Orange"></div>
+            <div class="bt-color-swatch-real" style="background:#C0392B;" data-color="#C0392B" title="Crimson Red"></div>
+            <div class="bt-color-swatch-real" style="background:#D6336C;" data-color="#D6336C" title="Ruby Pink"></div>
+            <div class="bt-color-swatch-real" style="background:#FF6F91;" data-color="#FF6F91" title="Coral Pink"></div>
+            <div class="bt-color-swatch-real" style="background:#8E44AD;" data-color="#8E44AD" title="Royal Purple"></div>
+            <div class="bt-color-swatch-real" style="background:#9B59B6;" data-color="#9B59B6" title="Amethyst"></div>
+            <div class="bt-color-swatch-real" style="background:#34495E;" data-color="#34495E" title="Charcoal Blue"></div>
+            <div class="bt-color-swatch-real" style="background:#5B7186;" data-color="#5B7186" title="Slate Grey"></div>
+            <div class="bt-color-swatch-real" style="background:#7F8C8D;" data-color="#7F8C8D" title="Ash Grey"></div>
+            <div class="bt-color-swatch-real" style="background:#BDC3C7;" data-color="#BDC3C7" title="Silver"></div>
+            <div class="bt-color-swatch-real" style="background:#111111;" data-color="#111111" title="Jet Black"></div>
+            <label class="bt-color-custom" title="Pick any color">
+              <input type="color" id="btCustomColorInput" value="#3E9AD6">
+            </label>
+          </div>
+          <p class="bt-logo-only-note" id="btLogoOnlyNote">The Premium bottle has a black full-diameter cap and no color label — your logo is placed as a center badge instead.</p>
+        </div>
+
+        <div class="bt-block">
+          <label class="bt-label-title">3. Upload Your Logo</label>
+          <label class="bt-upload" id="btUploadBox">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" style="color:var(--blue);margin:0 auto;display:block;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="1.8"/><polyline points="17 8 12 3 7 8" stroke="currentColor" stroke-width="1.8"/><line x1="12" y1="3" x2="12" y2="15" stroke="currentColor" stroke-width="1.8"/></svg>
+            <p id="btUploadText" style="margin-top:8px;">Click to upload logo (PNG / JPG)</p>
+            <input type="file" id="btLogoInput" accept="image/*">
+          </label>
+        </div>
+
+        <div class="bt-block">
+          <label class="bt-label-title">4. Brand Name On Label</label>
+          <input type="text" id="btBrandInput" placeholder="e.g. Café Delight" maxlength="20">
+        </div>
+
+        <div class="bt-block">
+          <label class="bt-label-title">5. Quantity</label>
+          <div class="bt-qty">
+            <button type="button" id="btQtyMinus">−</button>
+            <span id="btQtyVal">100</span>
+            <button type="button" id="btQtyPlus">+</button>
+            <span style="color:var(--text-muted);font-size:12.5px;">bottles (min. 100)</span>
+          </div>
+        </div>
+
+        <div class="bt-actions">
+          <a href="#btQuoteForm" class="btn btn-gradient">Request A Quote</a>
+          <a href="tel:03096419731" class="btn btn-outline">Call Us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE REQUEST FORM -->
+<section class="content-section" style="padding-top:0;" id="btQuoteForm">
+  <div class="container">
+    <div class="contact-form-card" style="max-width:720px;margin:0 auto;">
+      <span class="section-tag">FINALIZE YOUR REQUEST</span>
+      <h2 style="margin-bottom:22px;">Send Your Branding Request</h2>
+      <form data-demo>
+        <div class="form-row">
+          <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your name" required></div>
+          <div class="form-group"><label>Phone Number</label><input type="tel" placeholder="03XX XXXXXXX" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Business Name</label><input type="text" placeholder="Your business name"></div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="you@email.com"></div>
+        </div>
+        <div class="form-group"><label>Selected Configuration</label><input type="text" id="btSummary" readonly style="background:var(--bg-tint);"></div>
+        <div class="form-group"><label>Additional Notes</label><textarea placeholder="Delivery address, timeline, or any special instructions..."></textarea></div>
+        <button type="submit" class="btn btn-gradient" style="width:100%;justify-content:center;">Submit Branding Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ========== WHY BRAND WITH ELARA WAVE ========== -->
+<section class="why-us" style="padding-top:0;">
+  <div class="container">
+    <div class="section-heading center">
+      <span class="section-tag">WHY BRAND WITH ELARA WAVE</span>
+      <h2>Perfect For Every Business Occasion</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="M2 21h20M4 21V8l8-5 8 5v13" stroke="#fff" stroke-width="1.8"/><path d="M9 12h6M9 16h6" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Hotels &amp; Restaurants</h3>
+        <p>Impress guests with premium branded water at every table and room. A mark of quality and hospitality.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.2L12 16.4 5.8 20.9l2.4-7.2L2 9.2h7.6L12 2Z" stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.15)"/></svg>
+        </div>
+        <h3>Weddings &amp; Events</h3>
+        <p>Personalized water bottles as a memorable, elegant touch for your special day.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#fff" stroke-width="1.8" fill="rgba(255,255,255,0.1)"/><path d="M3 9h18M9 21V9" stroke="#fff" stroke-width="1.6"/></svg>
+        </div>
+        <h3>Corporate Gifts</h3>
+        <p>Branded bottles for meetings, conferences and client gifting that leave a lasting impression.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none"><path d="M18 8h1a4 4 0 0 1 0 8h-1" stroke="#fff" stroke-width="1.8"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8Z" stroke="#fff" stroke-width="1.8"/><path d="M6 1v3M10 1v3M14 1v3" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Cafés &amp; Retail</h3>
+        <p>Reinforce your brand identity with every bottle sold. Premium water, premium brand perception.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CLIENTS STRIP ========== -->
+<!-- ========== OUR VALUED CLIENTS ========== -->
+<section class="valued-clients-section">
+  <div class="container">
+    <div class="section-heading center" style="margin-bottom:50px;">
+      <span class="section-tag">OUR VALUED CLIENTS</span>
+      <h2>Trusted By Businesses Across Lahore</h2>
+      <p>From luxury hotels to corporate offices — leading businesses trust Elara Wave for premium branded water.</p>
+    </div>
+
+    <div class="clients-grid">
+
+      <div class="client-card">
+        <div class="client-icon" style="background:linear-gradient(135deg,#1a3a5c,#2d6a9f);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M2 21h20M4 21V8l8-5 8 5v13" stroke="#fff" stroke-width="1.7"/><rect x="8" y="13" width="3" height="4" rx="1" stroke="#fff" stroke-width="1.4"/><rect x="13" y="13" width="3" height="4" rx="1" stroke="#fff" stroke-width="1.4"/><path d="M10 8h4" stroke="#fff" stroke-width="1.4" stroke-linecap="round"/></svg>
+        </div>
+        <div class="client-info">
+          <h4>Pearl Continental</h4>
+          <span>5-Star Hotel, Lahore</span>
+        </div>
+        <div class="client-tag hotel">Hotel</div>
+      </div>
+
+      <div class="client-card">
+        <div class="client-icon" style="background:linear-gradient(135deg,#1a5c2e,#2d9f4e);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M18 8h1a4 4 0 0 1 0 8h-1" stroke="#fff" stroke-width="1.7"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8Z" stroke="#fff" stroke-width="1.7"/><path d="M6 1v3M10 1v3M14 1v3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="client-info">
+          <h4>Cafe Aylanto</h4>
+          <span>Fine Dining, Gulberg</span>
+        </div>
+        <div class="client-tag cafe">Restaurant</div>
+      </div>
+
+      <div class="client-card">
+        <div class="client-icon" style="background:linear-gradient(135deg,#5c1a3a,#9f2d5e);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.2L12 16.4 5.8 20.9l2.4-7.2L2 9.2h7.6L12 2Z" stroke="#fff" stroke-width="1.7" fill="rgba(255,255,255,0.15)"/></svg>
+        </div>
+        <div class="client-info">
+          <h4>Ali Bhai Events</h4>
+          <span>Wedding &amp; Events, DHA</span>
+        </div>
+        <div class="client-tag event">Events</div>
+      </div>
+
+      <div class="client-card">
+        <div class="client-icon" style="background:linear-gradient(135deg,#1a3a5c,#3e6a9f);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#fff" stroke-width="1.7" fill="rgba(255,255,255,0.1)"/><path d="M3 9h18M9 21V9" stroke="#fff" stroke-width="1.6"/></svg>
+        </div>
+        <div class="client-info">
+          <h4>Arif Habib Corp.</h4>
+          <span>Corporate Office, MM Alam</span>
+        </div>
+        <div class="client-tag corp">Corporate</div>
+      </div>
+
+      <div class="client-card">
+        <div class="client-icon" style="background:linear-gradient(135deg,#5c3a1a,#9f6e2d);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M2 21h20M4 21V8l8-5 8 5v13" stroke="#fff" stroke-width="1.7"/><path d="M9 12h6M9 16h6" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="client-info">
+          <h4>Avari Towers</h4>
+          <span>Luxury Hotel, Lahore</span>
+        </div>
+        <div class="client-tag hotel">Hotel</div>
+      </div>
+
+      <div class="client-card">
+        <div class="client-icon" style="background:linear-gradient(135deg,#1a5c4a,#2d9f80);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M3 12h18M3 6h18M3 18h18" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div class="client-info">
+          <h4>Dolmen Mall</h4>
+          <span>Retail Chain, Lahore</span>
+        </div>
+        <div class="client-tag retail">Retail</div>
+      </div>
+
+      <div class="client-card">
+        <div class="client-icon" style="background:linear-gradient(135deg,#2a1a5c,#5e2d9f);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M3 16V7h11v9" stroke="#fff" stroke-width="1.7"/><path d="M14 10h4l3 3v3h-7" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.5" stroke="#fff" stroke-width="1.4"/><circle cx="17" cy="18" r="1.5" stroke="#fff" stroke-width="1.4"/></svg>
+        </div>
+        <div class="client-info">
+          <h4>BlueEx Logistics</h4>
+          <span>Logistics, Quaid-e-Azam</span>
+        </div>
+        <div class="client-tag corp">Corporate</div>
+      </div>
+
+      <div class="client-card">
+        <div class="client-icon" style="background:linear-gradient(135deg,#1a5c1a,#3a9f3a);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M18 8h1a4 4 0 0 1 0 8h-1" stroke="#fff" stroke-width="1.7"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8Z" stroke="#fff" stroke-width="1.7"/><path d="M6 1v3M10 1v3M14 1v3" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </div>
+        <div class="client-info">
+          <h4>Burning Brownie</h4>
+          <span>Café Chain, DHA Phase 5</span>
+        </div>
+        <div class="client-tag cafe">Café</div>
+      </div>
+
+      <div class="client-card">
+        <div class="client-icon" style="background:linear-gradient(135deg,#1a3a5c,#2d5a8f);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 7.2H22l-6.2 4.5 2.4 7.2L12 16.4 5.8 20.9l2.4-7.2L2 9.2h7.6L12 2Z" stroke="#fff" stroke-width="1.7" fill="rgba(255,255,255,0.15)"/></svg>
+        </div>
+        <div class="client-info">
+          <h4>Royal Palm Golf</h4>
+          <span>Golf &amp; Country Club</span>
+        </div>
+        <div class="client-tag event">Club</div>
+      </div>
+
+      <div class="client-card">
+        <div class="client-icon" style="background:linear-gradient(135deg,#5c1a1a,#9f3a3a);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="2" stroke="#fff" stroke-width="1.7" fill="rgba(255,255,255,0.1)"/><path d="M3 9h18M9 21V9M15 21V9" stroke="#fff" stroke-width="1.5"/></svg>
+        </div>
+        <div class="client-info">
+          <h4>Packages Mall</h4>
+          <span>Retail Mall, Walton Road</span>
+        </div>
+        <div class="client-tag retail">Retail</div>
+      </div>
+
+      <div class="client-card">
+        <div class="client-icon" style="background:linear-gradient(135deg,#1a4a5c,#2d7a9f);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" stroke="#fff" stroke-width="1.7"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="#fff" stroke-width="1.7"/></svg>
+        </div>
+        <div class="client-info">
+          <h4>Nishtar Hospital</h4>
+          <span>Medical, Multan Road</span>
+        </div>
+        <div class="client-tag corp">Medical</div>
+      </div>
+
+      <div class="client-card">
+        <div class="client-icon" style="background:linear-gradient(135deg,#3a5c1a,#6a9f2d);">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M2 21h20M4 21V8l8-5 8 5v13" stroke="#fff" stroke-width="1.7"/><path d="M9 21v-6h6v6" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="client-info">
+          <h4>Paragon City</h4>
+          <span>Real Estate, Barki Road</span>
+        </div>
+        <div class="client-tag retail">Real Estate</div>
+      </div>
+
+    </div>
+
+    <!-- Stats below clients -->
+    <div class="clients-bottom-stats">
+      <div class="cbs-item">
+        <h3>100+</h3>
+        <p>Business Clients</p>
+      </div>
+      <div class="cbs-divider"></div>
+      <div class="cbs-item">
+        <h3>10,000+</h3>
+        <p>Branded Bottles Delivered</p>
+      </div>
+      <div class="cbs-divider"></div>
+      <div class="cbs-item">
+        <h3>4 Cities</h3>
+        <p>Covering Lahore &amp; Beyond</p>
+      </div>
+      <div class="cbs-divider"></div>
+      <div class="cbs-item">
+        <h3>99%</h3>
+        <p>Client Satisfaction Rate</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== LIVE CUSTOMIZER JS ========== -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  var canvas        = document.getElementById('btCanvas');
+  var ctx            = canvas ? canvas.getContext('2d') : null;
+  var sizeTag        = document.getElementById('btSizeTag');
+  var qtyVal         = document.getElementById('btQtyVal');
+  var summary        = document.getElementById('btSummary');
+  var brandInput     = document.getElementById('btBrandInput');
+  var downloadBtn    = document.getElementById('btDownloadBtn');
+  var colorBlock     = document.getElementById('btColorBlock');
+  var logoOnlyNote   = document.getElementById('btLogoOnlyNote');
+  var customColor    = document.getElementById('btCustomColorInput');
+
+  /* Realistic size profiles — every dimension is in canvas px (before auto-scale-to-fit).
+     Cap width is always sized to the neck it screws onto (normal sizes) or, for the
+     Premium bottle, to the FULL body diameter (flush full-width cap, no neck). */
+  var BOTTLE_PROFILES = {
+    '250':     { label: '250 ml Bottle',    bodyW: 96,  bodyH: 175, shoulderH: 24, neckW: 30, neckH: 22, capW: 40, capH: 26, hasLabel: true,  capIsBody: false },
+    '500':     { label: '500 ml Bottle',    bodyW: 116, bodyH: 250, shoulderH: 28, neckW: 34, neckH: 26, capW: 45, capH: 30, hasLabel: true,  capIsBody: false },
+    '1000':    { label: '1 Liter Bottle',   bodyW: 136, bodyH: 320, shoulderH: 32, neckW: 39, neckH: 30, capW: 51, capH: 34, hasLabel: true,  capIsBody: false },
+    '1500':    { label: '1.5 Liter Bottle', bodyW: 154, bodyH: 392, shoulderH: 36, neckW: 43, neckH: 32, capW: 56, capH: 38, hasLabel: true,  capIsBody: false },
+    'premium': { label: 'Premium Bottle',   bodyW: 100, bodyH: 462, shoulderH: 0,  neckW: 100, neckH: 0,  capW: 100, capH: 54, hasLabel: false, capIsBody: true }
+  };
+
+  var state = {
+    sizeKey: '500',
+    color: '#3E9AD6',
+    brand: 'YOUR BRAND',
+    qty: 100,
+    logoName: 'No logo uploaded',
+    logoImg: null
+  };
+
+  /* ---------- small canvas helpers ---------- */
+  function roundRectPath(c, x, y, w, h, r) {
+    r = Math.min(r, w / 2, h / 2);
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.arcTo(x + w, y, x + w, y + h, r);
+    c.arcTo(x + w, y + h, x, y + h, r);
+    c.arcTo(x, y + h, x, y, r);
+    c.arcTo(x, y, x + w, y, r);
+    c.closePath();
+  }
+
+  function shadeColor(hex, percent) {
+    hex = (hex || '#3E9AD6').replace('#', '');
+    if (hex.length === 3) hex = hex.split('').map(function (c) { return c + c; }).join('');
+    var num = parseInt(hex, 16);
+    var amt = Math.round(2.55 * percent);
+    var r = Math.max(0, Math.min(255, (num >> 16) + amt));
+    var g = Math.max(0, Math.min(255, ((num >> 8) & 0xff) + amt));
+    var b = Math.max(0, Math.min(255, (num & 0xff) + amt));
+    return '#' + (0x1000000 + r * 0x10000 + g * 0x100 + b).toString(16).slice(1);
+  }
+
+  /* ---------- main renderer ---------- */
+  function drawBottle() {
+    if (!ctx) return;
+    var profile = BOTTLE_PROFILES[state.sizeKey];
+    var W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+
+    var bg = ctx.createLinearGradient(0, 0, 0, H);
+    bg.addColorStop(0, '#EAF6FC');
+    bg.addColorStop(1, '#F6FBFD');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0, 0, W, H);
+
+    var marginX = 70, marginTop = 46, marginBottom = 76;
+    var availH = H - marginTop - marginBottom;
+    var availW = W - marginX * 2;
+
+    var totalH = profile.bodyH + profile.shoulderH + profile.neckH + profile.capH;
+    var maxW = Math.max(profile.bodyW, profile.capW);
+    var scale = Math.min(availH / totalH, availW / maxW, 1.2);
+
+    var bodyW = profile.bodyW * scale, bodyH = profile.bodyH * scale;
+    var shoulderH = profile.shoulderH * scale, neckW = profile.neckW * scale, neckH = profile.neckH * scale;
+    var capW = profile.capW * scale, capH = profile.capH * scale;
+
+    var cx = W / 2;
+    var baseY = H - marginBottom;
+    var bodyTopY = baseY - bodyH;
+    var shoulderTopY = bodyTopY - shoulderH;
+    var neckTopY = shoulderTopY - neckH;
+    var capTopY = neckTopY - capH;
+    var bodyRadius = Math.min(22 * scale, bodyW * 0.26);
+
+    /* ground shadow */
+    var shadowGrad = ctx.createRadialGradient(cx, baseY + 10, 4, cx, baseY + 10, bodyW * 0.7);
+    shadowGrad.addColorStop(0, 'rgba(18,58,94,0.28)');
+    shadowGrad.addColorStop(1, 'rgba(18,58,94,0)');
+    ctx.fillStyle = shadowGrad;
+    ctx.beginPath();
+    ctx.ellipse(cx, baseY + 10, bodyW * 0.7, 15, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    /* cylindrical body gradient (glass / PET plastic look) */
+    var bodyGrad = ctx.createLinearGradient(cx - bodyW / 2, 0, cx + bodyW / 2, 0);
+    bodyGrad.addColorStop(0.00, 'rgba(255,255,255,0.55)');
+    bodyGrad.addColorStop(0.20, 'rgba(205,232,247,0.35)');
+    bodyGrad.addColorStop(0.46, 'rgba(255,255,255,0.92)');
+    bodyGrad.addColorStop(0.62, 'rgba(188,222,242,0.42)');
+    bodyGrad.addColorStop(1.00, 'rgba(255,255,255,0.55)');
+
+    roundRectPath(ctx, cx - bodyW / 2, bodyTopY, bodyW, bodyH, bodyRadius);
+    ctx.fillStyle = bodyGrad;
+    ctx.fill();
+    ctx.lineWidth = 1.2;
+    ctx.strokeStyle = 'rgba(255,255,255,0.9)';
+    ctx.stroke();
+
+    /* bright vertical highlight streak — the thing that reads as "3D cylinder" */
+    ctx.save();
+    roundRectPath(ctx, cx - bodyW / 2, bodyTopY, bodyW, bodyH, bodyRadius);
+    ctx.clip();
+    var hlX = cx - bodyW * 0.22;
+    var hlGrad = ctx.createLinearGradient(hlX - 9 * scale, 0, hlX + 9 * scale, 0);
+    hlGrad.addColorStop(0, 'rgba(255,255,255,0)');
+    hlGrad.addColorStop(0.5, 'rgba(255,255,255,0.8)');
+    hlGrad.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = hlGrad;
+    ctx.fillRect(hlX - 9 * scale, bodyTopY, 18 * scale, bodyH);
+    ctx.restore();
+
+    /* shoulder taper into the neck (skipped for the flush Premium cap) */
+    if (shoulderH > 0) {
+      ctx.beginPath();
+      ctx.moveTo(cx - bodyW / 2, shoulderTopY + shoulderH);
+      ctx.quadraticCurveTo(cx - bodyW / 2, shoulderTopY, cx - neckW / 2, shoulderTopY);
+      ctx.lineTo(cx + neckW / 2, shoulderTopY);
+      ctx.quadraticCurveTo(cx + bodyW / 2, shoulderTopY, cx + bodyW / 2, shoulderTopY + shoulderH);
+      ctx.closePath();
+      ctx.fillStyle = bodyGrad;
+      ctx.fill();
+    }
+    if (neckH > 0) {
+      ctx.fillStyle = bodyGrad;
+      ctx.fillRect(cx - neckW / 2, neckTopY, neckW, neckH);
+    }
+
+    /* label band, or (if no label) a center logo badge */
+    if (profile.hasLabel) {
+      var labelH = bodyH * 0.34;
+      var labelY = bodyTopY + bodyH * 0.30;
+      var labelX = cx - bodyW / 2 + 4 * scale;
+      var labelW = bodyW - 8 * scale;
+
+      roundRectPath(ctx, labelX, labelY, labelW, labelH, 6 * scale);
+      ctx.fillStyle = state.color;
+      ctx.fill();
+
+      var sheen = ctx.createLinearGradient(0, labelY, 0, labelY + labelH);
+      sheen.addColorStop(0, 'rgba(255,255,255,0.30)');
+      sheen.addColorStop(0.5, 'rgba(255,255,255,0)');
+      sheen.addColorStop(1, 'rgba(0,0,0,0.18)');
+      ctx.fillStyle = sheen;
+      roundRectPath(ctx, labelX, labelY, labelW, labelH, 6 * scale);
+      ctx.fill();
+
+      var textY = labelY + labelH - 12 * scale;
+      if (state.logoImg) {
+        var maxLW = labelW * 0.56, maxLH = labelH * 0.46;
+        var r = Math.min(maxLW / state.logoImg.width, maxLH / state.logoImg.height);
+        var iw = state.logoImg.width * r, ih = state.logoImg.height * r;
+        ctx.drawImage(state.logoImg, cx - iw / 2, labelY + labelH * 0.10, iw, ih);
+        textY = labelY + labelH * 0.10 + ih + 15 * scale;
+      }
+      ctx.font = '800 ' + Math.max(11, bodyW * 0.10) + 'px Poppins, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = 'rgba(0,0,0,0.45)';
+      ctx.shadowBlur = 4 * scale;
+      ctx.fillText(state.brand, cx, Math.min(textY, labelY + labelH - 8 * scale));
+      ctx.shadowBlur = 0;
+    } else if (state.logoImg) {
+      var badgeR = bodyW * 0.30;
+      var badgeCy = bodyTopY + bodyH * 0.40;
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, badgeCy, badgeR, 0, Math.PI * 2);
+      ctx.fillStyle = '#fff';
+      ctx.shadowColor = 'rgba(0,0,0,0.25)';
+      ctx.shadowBlur = 10;
+      ctx.fill();
+      ctx.restore();
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, badgeCy, badgeR - 4 * scale, 0, Math.PI * 2);
+      ctx.clip();
+      ctx.drawImage(state.logoImg, cx - badgeR + 4 * scale, badgeCy - badgeR + 4 * scale, (badgeR - 4 * scale) * 2, (badgeR - 4 * scale) * 2);
+      ctx.restore();
+    }
+
+    /* cap — sized to the neck for normal bottles, or to the FULL body diameter for Premium */
+    var capBase = profile.capIsBody ? '#141414' : shadeColor(state.color, -32);
+    var capGrad = ctx.createLinearGradient(cx - capW / 2, 0, cx + capW / 2, 0);
+    capGrad.addColorStop(0.00, shadeColor(capBase, 22));
+    capGrad.addColorStop(0.42, shadeColor(capBase, 48));
+    capGrad.addColorStop(0.55, capBase);
+    capGrad.addColorStop(1.00, shadeColor(capBase, -14));
+
+    roundRectPath(ctx, cx - capW / 2, capTopY, capW, capH, Math.min(9 * scale, capW * 0.22));
+    ctx.fillStyle = capGrad;
+    ctx.fill();
+    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(0,0,0,0.25)';
+    ctx.stroke();
+
+    /* fine ridge lines for a realistic screw-cap texture */
+    ctx.strokeStyle = 'rgba(0,0,0,0.12)';
+    ctx.lineWidth = 1;
+    for (var i = 1; i < 4; i++) {
+      var ry = capTopY + (capH / 4) * i;
+      ctx.beginPath();
+      ctx.moveTo(cx - capW / 2 + 3 * scale, ry);
+      ctx.lineTo(cx + capW / 2 - 3 * scale, ry);
+      ctx.stroke();
+    }
+    ctx.textAlign = 'left';
+  }
+
+  function render() {
+    var profile = BOTTLE_PROFILES[state.sizeKey];
+    if (sizeTag) sizeTag.textContent = profile.label;
+
+    if (!profile.hasLabel) {
+      if (colorBlock) colorBlock.classList.add('disabled');
+      if (logoOnlyNote) logoOnlyNote.classList.add('show');
+    } else {
+      if (colorBlock) colorBlock.classList.remove('disabled');
+      if (logoOnlyNote) logoOnlyNote.classList.remove('show');
+    }
+    drawBottle();
+  }
+
+  function updateSummary() {
+    if (!summary) return;
+    var profile = BOTTLE_PROFILES[state.sizeKey];
+    var colorPart = profile.hasLabel ? state.color : 'N/A (Premium — no label)';
+    var brandPart = profile.hasLabel ? state.brand : 'N/A';
+    summary.value = profile.label + ' | Color: ' + colorPart + ' | Brand: ' + brandPart + ' | Qty: ' + state.qty + ' | Logo: ' + state.logoName;
+  }
+
+  /* 1. Bottle size selection */
+  document.querySelectorAll('.bt-bottle-opt').forEach(function (opt) {
+    opt.addEventListener('click', function () {
+      document.querySelectorAll('.bt-bottle-opt').forEach(function (o) { o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      state.sizeKey = opt.getAttribute('data-size');
+      render(); updateSummary();
+    });
+  });
+
+  /* 2. Color selection — swatches + custom color wheel */
+  document.querySelectorAll('.bt-color-swatch-real').forEach(function (sw) {
+    sw.addEventListener('click', function () {
+      if (!BOTTLE_PROFILES[state.sizeKey].hasLabel) return;
+      document.querySelectorAll('.bt-color-swatch-real').forEach(function (s) { s.classList.remove('selected'); });
+      sw.classList.add('selected');
+      state.color = sw.getAttribute('data-color');
+      if (customColor) customColor.value = state.color;
+      render(); updateSummary();
+    });
+  });
+  if (customColor) {
+    customColor.addEventListener('input', function () {
+      if (!BOTTLE_PROFILES[state.sizeKey].hasLabel) return;
+      document.querySelectorAll('.bt-color-swatch-real').forEach(function (s) { s.classList.remove('selected'); });
+      state.color = customColor.value;
+      render(); updateSummary();
+    });
+  }
+
+  /* 3. Logo upload */
+  var logoInput = document.getElementById('btLogoInput');
+  var uploadText = document.getElementById('btUploadText');
+  if (logoInput) {
+    logoInput.addEventListener('change', function (e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      state.logoName = file.name;
+      if (uploadText) uploadText.textContent = '✓ ' + file.name;
+      var reader = new FileReader();
+      reader.onload = function (ev) {
+        var img = new Image();
+        img.onload = function () {
+          state.logoImg = img;
+          render(); updateSummary();
+        };
+        img.src = ev.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  /* 4. Brand name */
+  if (brandInput) {
+    brandInput.addEventListener('input', function () {
+      var val = brandInput.value.trim();
+      state.brand = val ? val.toUpperCase() : 'YOUR BRAND';
+      render(); updateSummary();
+    });
+  }
+
+  /* 5. Quantity */
+  var qtyMinus = document.getElementById('btQtyMinus');
+  var qtyPlus  = document.getElementById('btQtyPlus');
+  if (qtyMinus) qtyMinus.addEventListener('click', function () { state.qty = Math.max(100, state.qty - 50); if (qtyVal) qtyVal.textContent = state.qty; updateSummary(); });
+  if (qtyPlus)  qtyPlus.addEventListener('click', function () { state.qty = state.qty + 50; if (qtyVal) qtyVal.textContent = state.qty; updateSummary(); });
+
+  /* Download — the canvas is already the final render, so export it directly */
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var link = document.createElement('a');
+      link.download = 'elara-wave-custom-bottle.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    });
+  }
+
+  render();
+  updateSummary();
+});
+</script>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+  <div class="footer-newsletter">
+    <div class="footer-newsletter-content">
+      <h2>Stay Hydrated With Elara Wave</h2>
+      <p>Get updates about our products, delivery services and latest offers.</p>
+    </div>
+    <form class="newsletter-form" data-demo>
+      <input type="email" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+
+  <div class="footer-main">
+    <div class="footer-column footer-brand">
+      <img src="images/elara-logo.webp" alt="Elara Wave Logo">
+      <p>Elara Wave provides premium mineral &amp; alkaline water solutions for homes, offices, restaurants and corporate businesses across Lahore.</p>
+      <div class="footer-socials">
+        <a href="https://www.facebook.com/share/1BJiUdHSMd/" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M13.5 21v-7.6h2.6l.4-3H13.5V8.4c0-.9.2-1.5 1.5-1.5h1.6V4.2c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H8v3h2.4V21h3.1Z"/></svg></a>
+        <a href="https://www.instagram.com/elarawavewaterofficial" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2.2c2.7 0 3 0 4.1.06 1.1.05 1.8.22 2.4.46.6.24 1.1.56 1.6 1.06.5.5.8 1 1.06 1.6.25.6.42 1.3.46 2.4.06 1.1.06 1.5.06 4.1s0 3-.06 4.1c-.05 1.1-.22 1.8-.46 2.4-.25.6-.56 1.1-1.06 1.6-.5.5-1 .82-1.6 1.06-.6.25-1.3.42-2.4.46-1.1.06-1.5.06-4.1.06s-3 0-4.1-.06c-1.1-.05-1.8-.22-2.4-.46-.6-.25-1.1-.56-1.6-1.06-.5-.5-.82-1-1.06-1.6-.25-.6-.42-1.3-.46-2.4C2.2 15 2.2 14.7 2.2 12s0-3 .06-4.1c.05-1.1.22-1.8.46-2.4.25-.6.56-1.1 1.06-1.6.5-.5 1-.82 1.6-1.06.6-.25 1.3-.42 2.4-.46C9 2.2 9.3 2.2 12 2.2Zm0 2c-2.6 0-2.9 0-4 .06-.9.04-1.4.17-1.7.3-.4.16-.7.35-1 .65-.3.3-.5.6-.66 1-.13.3-.26.8-.3 1.7-.05 1.1-.06 1.4-.06 4s0 2.9.06 4c.04.9.17 1.4.3 1.7.16.4.35.7.65 1 .3.3.6.5 1 .66.3.13.8.26 1.7.3 1.1.05 1.4.06 4 .06s2.9 0 4-.06c.9-.04 1.4-.17 1.7-.3.4-.16.7-.35 1-.65.3-.3.5-.6.66-1 .13-.3.26-.8.3-1.7.05-1.1.06-1.4.06-4s0-2.9-.06-4c-.04-.9-.17-1.4-.3-1.7a2.7 2.7 0 0 0-.65-1 2.7 2.7 0 0 0-1-.66c-.3-.13-.8-.26-1.7-.3-1.1-.05-1.4-.06-4-.06Zm0 3.4a4.4 4.4 0 1 1 0 8.8 4.4 4.4 0 0 1 0-8.8Zm0 2a2.4 2.4 0 1 0 0 4.8 2.4 2.4 0 0 0 0-4.8Zm4.6-2.6a1 1 0 1 1 0 2.1 1 1 0 0 1 0-2.1Z"/></svg></a>
+        <a href="https://wa.me/923096419731" aria-label="WhatsApp" target="_blank" rel="noopener"><svg viewBox="0 0 32 32" fill="none"><path d="M16 4C9.4 4 4 9.4 4 16c0 2.2.6 4.3 1.7 6.1L4 28l6.1-1.6C11.8 27.4 13.9 28 16 28c6.6 0 12-5.4 12-12S22.6 4 16 4Z" fill="#111"/><path d="M22.6 18.9c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.3-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.8-1.8-1-2.5-.3-.6-.5-.5-.8-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4Z" fill="#111"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-column">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="products.html">Products</a></li>
+        <li><a href="custom-branding.html">Custom Branding</a></li>
+        <li><a href="offers.html">Offers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-column">
+      <h3>More</h3>
+      <ul>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="login.html">Customer Login</a></li>
+        <li><a href="register.html">Register</a></li>
+      </ul>
+    </div>
+    <div class="footer-column footer-contact">
+      <h3>Contact Info</h3>
+      <p><span>📍</span> Gondal Heights Plaza, 60 Broadway Commercial, Paragon City, Barki Road, Lahore Cantt.</p>
+      <div class="phone-lines" style="padding-left:0;margin:8px 0;">
+        <a href="tel:03096419731" style="color:rgba(255,255,255,0.85);">0309-6419731</a>
+        <a href="tel:03096416732" style="color:rgba(255,255,255,0.85);">0309-6416732</a>
+      </div>
+      <p><span>✉</span> info@elarawave.com</p>
+      <p><span>◷</span> Mon - Sun: 8AM - 10PM</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Elara Wave. All Rights Reserved.</p>
+    <div>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms.html">Terms &amp; Conditions</a>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/923096419731?text=Hi%20Elara%20Wave%2C%20I%20want%20custom%20branded%20bottles." class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 32 32" fill="none"><path d="M16 4C9.4 4 4 9.4 4 16c0 2.2.6 4.3 1.7 6.1L4 28l6.1-1.6C11.8 27.4 13.9 28 16 28c6.6 0 12-5.4 12-12S22.6 4 16 4Z" fill="#fff"/><path d="M22.6 18.9c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.7-1.7-1-.9-1.7-2-1.9-2.3-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.8-1.8-1-2.5-.3-.6-.5-.5-.8-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4Z" fill="#25D366"/></svg>
+  <span class="wa-tooltip">Chat on WhatsApp</span>
+</a>
+
+<script src="main.js"></script>
+</body>
+</html>
